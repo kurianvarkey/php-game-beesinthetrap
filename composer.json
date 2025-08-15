@@ -1,0 +1,33 @@
+{
+    "name": "kurianvarkey/beesinthetrap",
+    "description": "A PHP based game to hit bees and viceversa",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "KVP\\Beesinthetrap\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "K V P",
+            "email": "kurianvarkey@yahoo.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.4",
+        "laravel/prompts": "^0.3.6",
+        "phpunit/phpunit": "^12.3"
+    },
+     "scripts": {
+        "test": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure",
+        "test-with-coverage": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure --coverage-html tests/coverage-report",
+        "format": "./vendor/bin/pint"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.24",
+        "mockery/mockery": "^1.6"
+    }
+}

@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * A PHP Game to hit bees and viceversa
+ *
+ * @version  1.0.0
+ *
+ * @author   K V P <kurianvarkey@yahoo.com>
+ */
+
+declare(strict_types=1);
+
+use KVP\Beesinthetrap\Console\Command;
+
+// checking PHP version for this app. PHP 8.4 is needed
+if (PHP_VERSION_ID < 80400) {
+    $err = 'This application needs atleast PHP version 8.4 to run and you are running '.PHP_VERSION.', please upgrade PHP.'.PHP_EOL;
+    exit($err);
+}
+
+require_once __DIR__.'/vendor/autoload.php';
+
+new Command()->run();
