@@ -21,13 +21,13 @@
         "laravel/prompts": "^0.3.6",
         "phpunit/phpunit": "^12.3"
     },
+    "require-dev": {
+        "laravel/pint": "^1.24",
+        "mockery/mockery": "^1.6"
+    },
      "scripts": {
         "test": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure --testdox --coverage-text",
         "test-with-coverage": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure  --coverage-html tests/coverage-report",
         "format": "./vendor/bin/pint"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.24",
-        "mockery/mockery": "^1.6"
-    }
+    }    
 }
