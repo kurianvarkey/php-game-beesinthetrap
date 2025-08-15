@@ -22,8 +22,8 @@
         "phpunit/phpunit": "^12.3"
     },
      "scripts": {
-        "test": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure",
-        "test-with-coverage": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure --coverage-html tests/coverage-report",
+        "test": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure --testdox --coverage-text",
+        "test-with-coverage": "./vendor/bin/phpunit tests/ --stop-on-error --stop-on-failure  --coverage-html tests/coverage-report",
         "format": "./vendor/bin/pint"
     },
     "require-dev": {
