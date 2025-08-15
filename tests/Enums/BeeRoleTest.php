@@ -11,14 +11,14 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(BeeRole::class)]
 final class BeeRoleTest extends TestCase
 {
-    public function testEnumValues(): void
+    public function test_enum_values(): void
     {
         $this->assertEquals('queen', BeeRole::Queen->value);
         $this->assertEquals('worker', BeeRole::Worker->value);
         $this->assertEquals('drone', BeeRole::Drone->value);
     }
 
-    public function testEnumCases(): void
+    public function test_enum_cases(): void
     {
         $cases = BeeRole::cases();
 

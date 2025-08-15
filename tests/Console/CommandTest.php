@@ -19,7 +19,7 @@ final class CommandTest extends TestCase
         Mockery::close();
     }
 
-    public function testConstructorWithDependencies(): void
+    public function test_constructor_with_dependencies(): void
     {
         $gameService = Mockery::mock(GameService::class);
         $ui = Mockery::mock(IConsoleUi::class);

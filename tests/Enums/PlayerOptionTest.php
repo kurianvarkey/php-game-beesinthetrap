@@ -11,21 +11,21 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PlayerOption::class)]
 final class PlayerOptionTest extends TestCase
 {
-    public function testEnumValues(): void
+    public function test_enum_values(): void
     {
         $this->assertEquals('hit', PlayerOption::Hit->value);
         $this->assertEquals('auto', PlayerOption::Auto->value);
         $this->assertEquals('quit', PlayerOption::Quit->value);
     }
 
-    public function testDisplayHints(): void
+    public function test_display_hints(): void
     {
         $this->assertEquals('Hit', PlayerOption::Hit->displayHints());
         $this->assertEquals('Auto (perform on your behalf)', PlayerOption::Auto->displayHints());
         $this->assertEquals('Quit', PlayerOption::Quit->displayHints());
     }
 
-    public function testEnumCases(): void
+    public function test_enum_cases(): void
     {
         $cases = PlayerOption::cases();
 

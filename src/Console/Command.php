@@ -34,6 +34,11 @@ final class Command
     private array $options = [];
 
     /**
+     * User Opted Quit or not
+     */
+    private bool $userOptedQuit = false;
+
+    /**
      * Constructor
      */
     public function __construct(
@@ -70,6 +75,10 @@ final class Command
                 PlayerOption::Quit->value => $this->gameService->stop(),
             };
 
+            if ($userInput === PlayerOption::Quit->value) {
+                $this->userOptedQuit = true;
+            }
+
             $this->gameService->performBeeHit();
         }
 
@@ -101,17 +110,19 @@ final class Command
         }
         $this->gameService->clearMessages();
 
-        $this->ui->table(
-            headers: ['Player Name', 'Hits', 'Remaining HP', 'Queen Bee Count', 'Worker Bee Count', 'Drone Bee Count'],
-            rows: [[
-                $this->playerName,
-                $this->gameService->getPlayerTotalHits(),
-                $this->gameService->getPlayerCurrentHP(),
-                $this->gameService->getBeeRemainingCount(BeeRole::Queen),
-                $this->gameService->getBeeRemainingCount(BeeRole::Worker),
-                $this->gameService->getBeeRemainingCount(BeeRole::Drone),
-            ]]
-        );
+        if (! $this->userOptedQuit) {
+            $this->ui->table(
+                headers: ['Player Name', 'Hits', 'Remaining HP', 'Queen Bee Count', 'Worker Bee Count', 'Drone Bee Count'],
+                rows: [[
+                    $this->playerName,
+                    $this->gameService->getPlayerTotalHits(),
+                    $this->gameService->getPlayerCurrentHP(),
+                    $this->gameService->getBeeRemainingCount(BeeRole::Queen),
+                    $this->gameService->getBeeRemainingCount(BeeRole::Worker),
+                    $this->gameService->getBeeRemainingCount(BeeRole::Drone),
+                ]]
+            );
+        }
 
         if ($gameOver) {
             $this->ui->note('** Game Over **'.PHP_EOL.$this->gameService->getGameSummary());
