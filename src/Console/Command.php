@@ -54,11 +54,10 @@ final class Command
     }
 
     /**
-     * Run
+     * Run is the main entry point
      */
     public function run(): void
     {
-        // set the options from the UserInput enum class
         $this->options = $this->getPlayetInputOptions();
 
         $this->init();
@@ -83,6 +82,18 @@ final class Command
         }
 
         $this->displayStats(gameOver: true);
+    }
+
+    /**
+     * Get Playet Input Options
+     */
+    private function getPlayetInputOptions(): array
+    {
+        return array_reduce(PlayerOption::cases(), function (array $options, PlayerOption $userInput) {
+            $options[$userInput->value] = $userInput->displayHints();
+
+            return $options;
+        }, []);
     }
 
     /**
@@ -111,22 +122,30 @@ final class Command
         $this->gameService->clearMessages();
 
         if (! $this->userOptedQuit) {
-            $this->ui->table(
-                headers: ['Player Name', 'Hits', 'Remaining HP', 'Queen Bee Count', 'Worker Bee Count', 'Drone Bee Count'],
-                rows: [[
-                    $this->playerName,
-                    $this->gameService->getPlayerTotalHits(),
-                    $this->gameService->getPlayerCurrentHP(),
-                    $this->gameService->getBeeRemainingCount(BeeRole::Queen),
-                    $this->gameService->getBeeRemainingCount(BeeRole::Worker),
-                    $this->gameService->getBeeRemainingCount(BeeRole::Drone),
-                ]]
-            );
+            $this->displayGameStats();
         }
 
         if ($gameOver) {
             $this->ui->note('** Game Over **'.PHP_EOL.$this->gameService->getGameSummary());
         }
+    }
+
+    /**
+     * Display Game Stats in a table
+     */
+    private function displayGameStats(): void
+    {
+        $this->ui->table(
+            headers: ['Player Name', 'Hits', 'Remaining HP', 'Queen Bee Count', 'Worker Bee Count', 'Drone Bee Count'],
+            rows: [[
+                $this->playerName,
+                $this->gameService->getPlayerTotalHits(),
+                $this->gameService->getPlayerCurrentHP(),
+                $this->gameService->getBeeRemainingCount(BeeRole::Queen),
+                $this->gameService->getBeeRemainingCount(BeeRole::Worker),
+                $this->gameService->getBeeRemainingCount(BeeRole::Drone),
+            ]]
+        );
     }
 
     /**
@@ -138,17 +157,5 @@ final class Command
             label: 'Please choose your action',
             options: $this->options,
         );
-    }
-
-    /**
-     * Get Playet Input Options
-     */
-    private function getPlayetInputOptions(): array
-    {
-        return array_reduce(PlayerOption::cases(), function (array $options, PlayerOption $userInput) {
-            $options[$userInput->value] = $userInput->displayHints();
-
-            return $options;
-        }, []);
     }
 }

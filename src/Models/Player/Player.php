@@ -69,19 +69,6 @@ final class Player
     }
 
     /**
-     * Set Bee Stings
-     */
-    public function setBeeStings(int $beeStings): void
-    {
-        if ($beeStings < 0) {
-            throw new InvalidArgumentException('Bee stings cannot be negative');
-        }
-
-        $this->totalBeeStings++;
-        $this->currentHP -= $beeStings;
-    }
-
-    /**
      * Get Total Bee Hits
      */
     public function getTotalBeeHits(): int
@@ -103,5 +90,18 @@ final class Player
     public function isPlayerAlive(): bool
     {
         return $this->currentHP > 0;
+    }
+
+    /**
+     * Hit player with bee stings. $beeStingDamage is the amount of damage the player takes from a bee sting
+     */
+    public function hit(int $stingPoints): void
+    {
+        if ($stingPoints < 0) {
+            throw new InvalidArgumentException('Bee stings cannot be negative');
+        }
+
+        $this->totalBeeStings++;
+        $this->currentHP -= $stingPoints;
     }
 }

@@ -29,6 +29,7 @@ enum PlayerOption: string
             self::Hit => 'Hit',
             self::Auto => 'Auto (perform on your behalf)',
             self::Quit => 'Quit',
+            default => 'Invalid option',
         };
     }
 }

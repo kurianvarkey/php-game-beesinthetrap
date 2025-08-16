@@ -97,7 +97,7 @@ class GameService
     {
         // chances for player to miss
         if ($this->randomizer->random(1, 100) <= GameConfig::PLAYER_MISS_CHANCE) {
-            $this->addToMessageBag('You just missed the hive, better luck next time!');
+            $this->addToMessageBag('You just missed the hive, better luck next time!', GameConfig::MESSAGE_TYPE_WARNING);
 
             return;
         }
@@ -148,8 +148,8 @@ class GameService
             return;
         }
 
-        $this->player->setBeeStings($bee->getStingPoints());
-        $this->addToMessageBag('Sting! You just got stung by a '.$bee->getRole()?->name.' bee', GameConfig::MESSAGE_TYPE_ERROR);
+        $this->player->hit($bee->getStingPoints());
+        $this->addToMessageBag('Sting! You just got stung by a '.$bee->getRole()?->name.' bee and lost '.$bee->getStingPoints().' hit points', GameConfig::MESSAGE_TYPE_ERROR);
 
         $this->checkGameStatus();
     }
