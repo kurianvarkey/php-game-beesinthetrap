@@ -21,7 +21,7 @@ Assuming that the you have installed with latest PHP version (8.4+), please clon
 $ git clone https://github.com/kurianvarkey/php-game-beesinthetrap.git php-game-beesinthetrap
 $ cd php-game-beesinthetrap
 $ composer install
-$ php beeinthetrap
+$ php beesinthetrap
 ```
 
 ## Running Tests
