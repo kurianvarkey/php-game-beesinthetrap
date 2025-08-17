@@ -14,6 +14,7 @@ This application requires the following dependencies:
 ## Getting Started
 
 Assuming that the you have installed with latest PHP version (8.4+), please clone the repository:
+
 *Note: I have only tested this application with PHP 8.4. If you want to try with other old versions, please comment the lines 17 - 20 in the beesinthetrap file. Also update the php version in composer.json*
 
 ``` bash
