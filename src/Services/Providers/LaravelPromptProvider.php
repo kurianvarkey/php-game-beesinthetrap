@@ -8,28 +8,23 @@
  * @author   K V P <kurianvarkey@yahoo.com>
  */
 
-namespace KVP\Beesinthetrap\Services;
+namespace KVP\Beesinthetrap\Services\Providers;
 
 use KVP\Beesinthetrap\Contracts\IConsoleUi;
-use KVP\Beesinthetrap\Services\Providers\LaravelPromptProvider;
 
-class ConsoleUi
+use function Laravel\Prompts\note;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\table;
+use function Laravel\Prompts\text;
+
+class LaravelPromptProvider implements IConsoleUi
 {
-    /**
-     * __construct
-     */
-    public function __construct(
-        public ?IConsoleUi $consoleUiProvider = null
-    ) {
-        $this->consoleUiProvider ??= new LaravelPromptProvider;
-    }
-
     /**
      * text - wrapper for Laravel Prompts text
      */
     public function text(string $label, string $placeholder = '', bool|string $required = false, string $default = '', string $hint = ''): string
     {
-        return $this->consoleUiProvider->text(
+        return text(
             label: $label,
             placeholder: $placeholder,
             required: $required,
@@ -43,7 +38,7 @@ class ConsoleUi
      */
     public function select(string $label, array $options, string $hint = ''): string
     {
-        return $this->consoleUiProvider->select(
+        return select(
             label: $label,
             options: $options,
             hint: $hint
@@ -55,7 +50,7 @@ class ConsoleUi
      */
     public function note(string $message, ?string $type = null): void
     {
-        $this->consoleUiProvider->note(message: $message, type: $type);
+        note(message: $message, type: $type);
     }
 
     /**
@@ -63,6 +58,6 @@ class ConsoleUi
      */
     public function table(array $headers, array $rows): void
     {
-        $this->consoleUiProvider->table($headers, $rows);
+        table($headers, $rows);
     }
 }

@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace KVP\Beesinthetrap\Console;
 
 use KVP\Beesinthetrap\Config\GameConfig;
-use KVP\Beesinthetrap\Contracts\IConsoleUi;
 use KVP\Beesinthetrap\Enums\BeeRole;
 use KVP\Beesinthetrap\Enums\PlayerOption;
 use KVP\Beesinthetrap\Models\Hive\Hive;
@@ -43,7 +42,7 @@ final class Command
      */
     public function __construct(
         private ?GameService $gameService = null,
-        private ?IConsoleUi $ui = null
+        private ?ConsoleUi $ui = null
     ) {
         $this->gameService ??= new GameService(
             new Player(GameConfig::PLAYER_MAX_HP),

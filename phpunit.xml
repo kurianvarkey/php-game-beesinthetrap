@@ -23,7 +23,9 @@
         </include>
          <exclude>
             <directory suffix=".php">./src/Config</directory>
-            <directory suffix=".php">./src/Contracts</directory>            
+            <directory suffix=".php">./src/Contracts</directory>
+            <directory suffix=".php">./src/Console</directory>
+            <directory suffix=".php">./src/Services/Providers</directory>
         </exclude>
     </source>
 </phpunit>

@@ -14,7 +14,7 @@ namespace KVP\Beesinthetrap\Models\Player;
 
 use InvalidArgumentException;
 
-final class Player
+class Player
 {
     /**
      * Current HP

@@ -8,6 +8,8 @@
  * @author   K V P <kurianvarkey@yahoo.com>
  */
 
+declare(strict_types=1);
+
 namespace KVP\Beesinthetrap\Contracts;
 
 interface IConsoleUi

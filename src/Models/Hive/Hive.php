@@ -19,7 +19,7 @@ use KVP\Beesinthetrap\Enums\BeeRole;
 use KVP\Beesinthetrap\Models\Bee\BeeFactory;
 use KVP\Beesinthetrap\Services\Randomizer;
 
-final class Hive
+class Hive
 {
     private array $bees = [];
 
