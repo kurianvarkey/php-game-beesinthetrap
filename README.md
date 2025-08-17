@@ -24,6 +24,9 @@ $ php beeinthetrap
 ```
 
 ## Running Tests
-```
+Due to time constraints, I've only written a few test cases. I will add more as time goes. All of the code was written with a focus on unit testing and with dependency injection applied wherever possible.
+
+To run the tests, run the following command:
+``` bash
 composer test
 ```
