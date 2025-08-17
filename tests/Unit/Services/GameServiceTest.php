@@ -175,7 +175,6 @@ class GameServiceTest extends TestCase
 
     public function test_perform_player_hit_miss()
     {
-        // test for a miss
         $this->randomizerMock->shouldReceive('random')
             ->once()
             ->andReturn(1);
@@ -186,7 +185,6 @@ class GameServiceTest extends TestCase
 
     public function test_perform_player_hit_no_bees()
     {
-        // test for no bees
         $this->randomizerMock->shouldReceive('random')
             ->once()
             ->andReturn(80);
