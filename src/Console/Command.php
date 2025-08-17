@@ -150,7 +150,7 @@ final class Command
 
         Good Luck!
         EOT;
-        
+
         $this->ui->note($message);
     }
 
