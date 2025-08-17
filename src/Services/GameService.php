@@ -136,7 +136,7 @@ class GameService
 
         // chances for bee to miss
         if ($this->randomizer->random(1, 100) <= GameConfig::BEE_MISS_CHANCE) {
-            $this->addToMessageBag('Buzz! That was close! The bees just missed you!');
+            $this->addToMessageBag('Buzz! That was close! The bees just missed you!', GameConfig::MESSAGE_TYPE_WARNING);
 
             return;
         }
