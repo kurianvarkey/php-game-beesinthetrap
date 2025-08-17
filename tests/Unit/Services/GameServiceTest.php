@@ -143,7 +143,7 @@ class GameServiceTest extends TestCase
         $this->assertEquals(0, count($this->gameService->getMessages()));
     }
 
-    public function test_get_game_summary()
+    public function test_get_game_summary_is_player_alive()
     {
         $this->playerMock->shouldReceive('isPlayerAlive')
             ->once()
@@ -154,7 +154,10 @@ class GameServiceTest extends TestCase
             ->andReturn(10);
 
         $this->assertEquals('It took 10 stings for the hive to kill you.', $this->gameService->getGameSummary());
+    }
 
+    public function test_get_game_summary_get_total_bee_hits()
+    {
         $this->playerMock->shouldReceive('isPlayerAlive')
             ->once()
             ->andReturn(true);
@@ -170,7 +173,7 @@ class GameServiceTest extends TestCase
         $this->assertEquals('It took 50 hits to destroy the hive.', $this->gameService->getGameSummary());
     }
 
-    public function test_perform_player_hit()
+    public function test_perform_player_hit_miss()
     {
         // test for a miss
         $this->randomizerMock->shouldReceive('random')
@@ -179,16 +182,22 @@ class GameServiceTest extends TestCase
 
         $this->gameService->performPlayerHit();
         $this->assertEquals('You just missed the hive, better luck next time!', $this->gameService->getMessages()[0]['message']);
-        $this->gameService->clearMessages();
+    }
 
+    public function test_perform_player_hit_no_bees()
+    {
         // test for no bees
+        $this->randomizerMock->shouldReceive('random')
+            ->once()
+            ->andReturn(80);
+
         $this->hiveMock->shouldReceive('getRandomBee')
             ->once()
             ->andReturn(null);
 
         $this->gameService->performPlayerHit();
         $this->assertEquals('There are no bees!', $this->gameService->getMessages()[0]['message']);
-
-        // test for a random bee
     }
+
+    // test for a random bee
 }
