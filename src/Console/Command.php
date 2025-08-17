@@ -100,14 +100,58 @@ final class Command
      */
     private function init(): void
     {
+        $this->ui->clear();
+
         $this->playerName = $this->ui->text(
             label: 'What is your name?',
             placeholder: 'Your name',
-            // default: 'Player 1',
             required: true,
         );
 
-        $this->ui->note('** Hi '.ucfirst($this->playerName).', welcome to Bees in the Trap Game **');
+        $name = ucfirst($this->playerName);
+        $maimumHP = GameConfig::PLAYER_MAX_HP;
+
+        $queenCount = GameConfig::QUEEN_COUNT;
+        $queenLifespan = GameConfig::QUEEN_LIFESPAN;
+        $queenStingPoint = GameConfig::QUEEN_STING_POINTS;
+        $queenDamage = GameConfig::QUEEN_DAMAGE_POINTS;
+
+        $workerCount = GameConfig::WORKER_COUNT;
+        $workerLifespan = GameConfig::WORKER_LIFESPAN;
+        $workerStingPoint = GameConfig::WORKER_STING_POINTS;
+        $workerDamage = GameConfig::WORKER_DAMAGE_POINTS;
+
+        $droneCount = GameConfig::DRONE_COUNT;
+        $droneLifespan = GameConfig::DRONE_LIFESPAN;
+        $droneStingPoint = GameConfig::DRONE_STING_POINTS;
+        $droneDamage = GameConfig::DRONE_DAMAGE_POINTS;
+
+        $message = <<<EOT
+        ** Hi $name, welcome to Bees in the Trap Game **
+        -------------------------------------------------------------------------
+        
+        Each player's mission is to destroy the hive by killing all the bees in the hive. After every player's hit, it is bees turn to hit the player.
+        Hit can also be missed.
+
+        Options:
+        1. Enter 'Hit' to hit the bee
+        2. Enter 'Auto' to hit the bee automatically
+        3. Enter 'Quit' to quit the game
+
+        Each player has a maximum of  $maimumHP HP.
+
+        There are 3 types of bees in the hive:
+        1. Queen Bee. Total: $queenCount Lifespan: $queenLifespan, each hit will reduce the lifespan by $queenDamage. Each sting reduces the player's HP by $queenStingPoint.
+        2. Worker Bee. Total: $workerCount Lifespan: $workerLifespan, each hit will reduce the lifespan by $workerDamage. Each sting reduces the player's HP by $workerStingPoint.
+        3. Drone Bee. Total: $droneCount Lifespan: $droneLifespan, each hit will reduce the lifespan by $droneDamage. Each sting reduces the player's HP by $droneStingPoint.
+
+        When a bee dies, it will be removed from the hive. And when queen bee dies, all bees in the hive will be removed and the game will be over.
+        Game will be over when all bees are dead or player is dead.
+
+        Good Luck!
+        EOT;
+        
+        $this->ui->note($message);
     }
 
     /**
@@ -125,7 +169,8 @@ final class Command
         }
 
         if ($gameOver) {
-            $this->ui->note('** Game Over **'.PHP_EOL.$this->gameService->getGameSummary());
+            $summary = $this->gameService->getGameSummary();
+            $this->ui->note('** Game Over **'.PHP_EOL.($summary != '' ? $summary : 'User opted to quit the game.'));
         }
     }
 

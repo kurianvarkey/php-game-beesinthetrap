@@ -79,4 +79,17 @@ class ConsoleUiTest extends TestCase
 
         // this is a void method, but called for code coverage
     }
+
+    public function test_clear()
+    {
+        $this->consoleUiProviderMock->shouldReceive('clear')
+            ->once();
+
+        $ui = new ConsoleUi($this->consoleUiProviderMock);
+
+        $ui->clear();
+        $this->assertTrue(true);
+
+        // this is a void method, but called for code coverage
+    }
 }

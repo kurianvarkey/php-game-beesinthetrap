@@ -65,4 +65,12 @@ class ConsoleUi
     {
         $this->consoleUiProvider->table($headers, $rows);
     }
+
+    /**
+     * clear - wrapper for Laravel Prompts clear
+     */
+    public function clear(): void
+    {
+        $this->consoleUiProvider->clear();
+    }
 }

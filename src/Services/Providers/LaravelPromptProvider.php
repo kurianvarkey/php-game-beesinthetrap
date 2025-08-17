@@ -12,6 +12,7 @@ namespace KVP\Beesinthetrap\Services\Providers;
 
 use KVP\Beesinthetrap\Contracts\IConsoleUi;
 
+use function Laravel\Prompts\clear;
 use function Laravel\Prompts\note;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\table;
@@ -59,5 +60,13 @@ class LaravelPromptProvider implements IConsoleUi
     public function table(array $headers, array $rows): void
     {
         table($headers, $rows);
+    }
+
+    /**
+     * clear - wrapper for Laravel Prompts clear
+     */
+    public function clear(): void
+    {
+        clear();
     }
 }

@@ -21,4 +21,6 @@ interface IConsoleUi
     public function note(string $message, ?string $type = null): void;
 
     public function table(array $headers, array $rows): void;
+
+    public function clear(): void;
 }
